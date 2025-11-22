@@ -13,6 +13,7 @@ public class Wall {
   
   public void draw() {
     fill(125);
+    noStroke();
     rect(x, y, wallWidth, wallHeight);
   }
 }
