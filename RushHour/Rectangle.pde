@@ -12,6 +12,11 @@ public class Rectangle {
     return new Rectangle(x + diffX, y + diffY, width, height);
   }
   
+  public boolean isPointInRectangle(Position pos) {
+    return pos.x >= x && pos.x <= x + width && 
+        pos.y >= y && pos.y <= y + height;
+  }
+  
   public boolean intersects(Rectangle other) {
     // Vergleiche, welche Nicht-Kolissionen erkennen
     if (x >= other.x + other.width) {
