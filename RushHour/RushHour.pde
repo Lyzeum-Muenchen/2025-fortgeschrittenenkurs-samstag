@@ -5,6 +5,7 @@ Wall[] walls;
 
 Vehicle[] vehicles;
 Position prevMousePos;
+int selectedVehicle;
 
 void setup() {
   size(560, 560); // (6 + 1) x (6 + 1)
@@ -26,22 +27,51 @@ void setup() {
 
 void mousePressed() {
   prevMousePos = new Position(mouseX, mouseY);
+  selectedVehicle = -1;
+  for (int i = 0; i < vehicles.length; i++) {
+    if (vehicles[i].hitbox.isPointInRectangle(prevMousePos)) {
+      selectedVehicle = i;
+    }
+  }
 }
 
 void mouseDragged() {
   // calculate movement
   int offsetX = mouseX - prevMousePos.x;
   int offsetY = mouseY - prevMousePos.y;
-  Vehicle v = vehicles[0]; // TODO default wert ersetzen
-  
-  // left or right
+  if (selectedVehicle != -1) {
+    Vehicle v = vehicles[selectedVehicle];
+    if (v.movesVertically) {
+      moveVehicleUpOrDown(offsetY);
+    } else {
+      moveVehicleLeftOrRight(offsetX);
+    }
+  }
+}
+
+void moveVehicleUpOrDown(int offsetY) {
+  Vehicle v = vehicles[selectedVehicle];
+  do {
+    int diff = offsetY > 0 ? 1 : -1;
+    Rectangle newPos = v.hitbox.move(0, diff);
+    if (intersects(newPos)) {
+      break;
+    } else {
+      v.hitbox = newPos;
+      offsetY -= diff;
+      prevMousePos = prevMousePos.move(0, diff);
+    }
+  } while(offsetY != 0);
+}
+
+void moveVehicleLeftOrRight(int offsetX) {
+  Vehicle v = vehicles[selectedVehicle];
   do {
     int diff = offsetX > 0 ? 1 : -1;
     Rectangle newPos = v.hitbox.move(diff, 0);
     if (intersects(newPos)) {
       break;
     } else {
-      // TODO Auto bewegen
       v.hitbox = newPos;
       offsetX -= diff;
       prevMousePos = prevMousePos.move(diff, 0);
@@ -50,7 +80,12 @@ void mouseDragged() {
 }
 
 boolean intersects(Rectangle newPos) {
-  return false; // TODO echte Kolission implementieren
+  for (Wall wall: walls) {
+    if(wall.hitbox.intersects(newPos)) {
+      return true;
+    }
+  }
+  return false;
 }
 
 
