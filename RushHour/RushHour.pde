@@ -20,9 +20,22 @@ void setup() {
       halfTile, 7 * halfTile)
   };
   
-  vehicles = new Vehicle[] {
-    new Vehicle(indexToPos(2), indexToPos(2), false, false, color(255, 0, 0))
-  };
+  loadLevel();
+}
+
+void loadLevel() {
+  String[] lines = loadStrings("level_01.csv");
+  vehicles = new Vehicle[lines.length - 1];
+  for (int i = 1; i < lines.length; i++) {
+    String[] parts = lines[i].split(","); // Werte am Komma trennen
+    int x = indexToPos(int(parts[0]));
+    int y = indexToPos(int(parts[1]));
+    boolean isTruck = boolean(parts[2]);
+    boolean movesVertically = boolean(parts[3]);
+    color fillColor = unhex("FF" + parts[4]); // "FF" damit Farbe nicht transparent wird
+
+    vehicles[i - 1] = new Vehicle(x, y, isTruck, movesVertically, fillColor);
+  }
 }
 
 void mousePressed() {
@@ -82,6 +95,11 @@ void moveVehicleLeftOrRight(int offsetX) {
 boolean intersects(Rectangle newPos) {
   for (Wall wall: walls) {
     if(wall.hitbox.intersects(newPos)) {
+      return true;
+    }
+  }
+  for (int i = 0; i < vehicles.length; i++) {
+    if (selectedVehicle != i && vehicles[i].hitbox.intersects(newPos)) {
       return true;
     }
   }
