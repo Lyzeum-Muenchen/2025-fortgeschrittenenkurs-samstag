@@ -1,0 +1,11 @@
+x,y,isTruck,movesVertically,fillColor
+0,2,false,false,FF0000
+0,0,false,true,5AD37B
+1,0,false,false,FFBC00
+1,1,false,false,0CF7E2
+3,0,true,true,E0FF00
+2,2,false,true,FA83F2
+3,3,false,false,C50CF0
+2,4,false,true,379509
+3,5,true,false,09EAD9
+5,2,true,true,DB80CF

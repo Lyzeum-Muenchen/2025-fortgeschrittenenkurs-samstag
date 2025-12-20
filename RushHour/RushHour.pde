@@ -6,6 +6,8 @@ Wall[] walls;
 Vehicle[] vehicles;
 Position prevMousePos;
 int selectedVehicle;
+Rectangle exitArea;
+boolean isLevelCompleted;
 
 void setup() {
   size(560, 560); // (6 + 1) x (6 + 1)
@@ -14,17 +16,20 @@ void setup() {
     new Wall(0, 0, 7 * TILE_LENGTH, halfTile), //oben
     new Wall(0, 0, halfTile, 7 * TILE_LENGTH), // links
     new Wall(0, 13 * halfTile, 7 * TILE_LENGTH, halfTile), // unten
-    new Wall(13 * halfTile, 0, 
-      halfTile, 5 * halfTile),
+    new Wall(13 * halfTile, 0,
+    halfTile, 5 * halfTile),
     new Wall(13 * halfTile, 7 * halfTile,
-      halfTile, 7 * halfTile)
+    halfTile, 7 * halfTile)
   };
-  
+  exitArea = new Rectangle(
+    indexToPos(6), indexToPos(2), TILE_LENGTH, TILE_LENGTH
+  );
+
   loadLevel();
 }
 
 void loadLevel() {
-  String[] lines = loadStrings("level_01.csv");
+  String[] lines = loadStrings("level_27.csv");
   vehicles = new Vehicle[lines.length - 1];
   for (int i = 1; i < lines.length; i++) {
     String[] parts = lines[i].split(","); // Werte am Komma trennen
@@ -60,6 +65,7 @@ void mouseDragged() {
       moveVehicleLeftOrRight(offsetX);
     }
   }
+ 
 }
 
 void moveVehicleUpOrDown(int offsetY) {
@@ -74,7 +80,7 @@ void moveVehicleUpOrDown(int offsetY) {
       offsetY -= diff;
       prevMousePos = prevMousePos.move(0, diff);
     }
-  } while(offsetY != 0);
+  } while (offsetY != 0);
 }
 
 void moveVehicleLeftOrRight(int offsetX) {
@@ -89,12 +95,16 @@ void moveVehicleLeftOrRight(int offsetX) {
       offsetX -= diff;
       prevMousePos = prevMousePos.move(diff, 0);
     }
-  } while(offsetX != 0);
+  } while (offsetX != 0);
+  
+  if (!isLevelCompleted && v.hitbox.intersects(exitArea)) {
+    isLevelCompleted = true;
+  }
 }
 
 boolean intersects(Rectangle newPos) {
-  for (Wall wall: walls) {
-    if(wall.hitbox.intersects(newPos)) {
+  for (Wall wall : walls) {
+    if (wall.hitbox.intersects(newPos)) {
       return true;
     }
   }
@@ -109,10 +119,10 @@ boolean intersects(Rectangle newPos) {
 
 void draw() {
   background(255);
-  for (Wall wall: walls) {
+  for (Wall wall : walls) {
     wall.draw();
   }
-  for (Vehicle vehicle: vehicles) {
+  for (Vehicle vehicle : vehicles) {
     vehicle.draw();
   }
 }

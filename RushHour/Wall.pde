@@ -12,7 +12,11 @@ public class Wall {
   }
   
   public void draw() {
-    fill(125);
+    if (isLevelCompleted) {
+      fill(14, 234, 74);
+    } else {
+      fill(125);
+    }
     noStroke();
     rect(x, y, wallWidth, wallHeight);
   }
