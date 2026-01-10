@@ -23,6 +23,32 @@ public class Spaceship {
   }
   
   public void turnRight() {
-  
+    angle += turnSpeed;
+    if (angle >= 2 * PI) {
+      angle -= 2 * PI; // 2 * PI sind 360 Grad
+    }
+  }
+  // beschleunigen
+  public void accelerate() {
+    final float MAX_SPEED = 7;
+    currentSpeed = min(currentSpeed + accelerationSpeed, MAX_SPEED);
+  }
+  public void brake() {
+    currentSpeed = max(currentSpeed - accelerationSpeed, 0);
+  }
+  public void update() {
+    float diffX = cos(angle) * currentSpeed;
+    float diffY = sin(angle) * currentSpeed;
+    centerX += diffX;
+    centerY += diffY;
+  }
+  public void draw() {
+    pushMatrix();
+    translate(centerX, centerY);
+    rotate(angle);
+    rectMode(CENTER);
+    fill(240);
+    rect(0, 0, shipWidth, shipHeight);
+    popMatrix();
   }
 }
