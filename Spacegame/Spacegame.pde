@@ -8,6 +8,8 @@ final int KEY_BRAKE = 'S';
 final int KEY_TURN_LEFT = 'A';
 final int KEY_TURN_RIGHT = 'D';
 
+Asteroid testAsteroid = new Asteroid(800, 300, ItemType.LYZEUM_ORE, 2);
+
 void setup() {
   fullScreen();
   //size(1600, 900);
@@ -44,4 +46,5 @@ void draw() {
   player.update();
   background(30);
   player.draw();
+  testAsteroid.draw();
 }

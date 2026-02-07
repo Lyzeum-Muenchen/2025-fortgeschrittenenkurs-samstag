@@ -42,8 +42,11 @@ public class Spaceship {
     centerX += diffX;
     centerY += diffY;
   }
+  
   public void draw() {
     pushMatrix();
+    // Offset wird spaeter aktiviert
+    // translate(-camera.getOffsetX(), - camera.getOffsetY());
     translate(centerX, centerY);
     rotate(angle);
     rectMode(CENTER);
@@ -51,4 +54,5 @@ public class Spaceship {
     rect(0, 0, shipWidth, shipHeight);
     popMatrix();
   }
+  
 }
