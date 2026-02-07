@@ -17,7 +17,7 @@ public class Asteroid {
     translate(x, y);
     rectMode(CENTER);
     fill(0, 0, 240);
-    rect(x, y, width, height);
+    rect(0, 0, width, height);
     popMatrix();
   }
 

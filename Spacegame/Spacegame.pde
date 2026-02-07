@@ -41,9 +41,11 @@ void handleKeypresses() {
 }
 
 void draw() {
+  // --- UPDATE ---
   camera.focus(player);
   handleKeypresses();
   player.update();
+  // --- DRAW ---
   background(30);
   player.draw();
   testAsteroid.draw();
