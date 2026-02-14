@@ -7,12 +7,18 @@ final int KEY_ACCELERATE = 'W';
 final int KEY_BRAKE = 'S';
 final int KEY_TURN_LEFT = 'A';
 final int KEY_TURN_RIGHT = 'D';
+// Inventar
+// Waffencooldown/Anzahl Schuesse
+
+ProgressBar healthBar = new ProgressBar(
+  100, 100, 250, 50, color(50), color(227, 46, 46)
+);
 
 Asteroid testAsteroid = new Asteroid(800, 300, ItemType.LYZEUM_ORE, 2);
 
 void setup() {
-  fullScreen();
-  //size(1600, 900);
+  //fullScreen();
+  size(1600, 900);
   frameRate(120);
   player = new PlayerSpaceship(500, 300, 80, 50);
 }
@@ -45,8 +51,10 @@ void draw() {
   camera.focus(player);
   handleKeypresses();
   player.update();
+  healthBar.setValues(player.currentHp, player.maxHp);
   // --- DRAW ---
   background(30);
   player.draw();
   testAsteroid.draw();
+  healthBar.draw();
 }

@@ -4,6 +4,10 @@ public class Spaceship {
   float centerX, centerY, shipWidth, shipHeight;
   float angle, turnSpeed, accelerationSpeed;
   float currentSpeed;
+  int currentHp, maxHp;
+  Inventory inventory;
+  
+  
   public Spaceship(float centerX, float centerY, float shipWidth
     , float shipHeight) {
     this.centerX = centerX;
@@ -13,6 +17,10 @@ public class Spaceship {
     angle = 0.0f;
     turnSpeed = PI / 128;
     accelerationSpeed = 0.02f;
+    currentHp = 50;
+    maxHp = 100;
+    inventory = new Inventory();
+    inventory.addItem(ItemType.MORX_ORE, 100);
   }
   
   public void turnLeft() {

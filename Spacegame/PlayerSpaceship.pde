@@ -1,4 +1,6 @@
 public class PlayerSpaceship extends Spaceship {
+  
+  
   public PlayerSpaceship(float centerX, float centerY, float shipWidth
     , float shipHeight) {
     super(centerX, centerY, shipWidth, shipHeight);
