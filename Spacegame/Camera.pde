@@ -1,8 +1,12 @@
 public class Camera {
   float offsetX, offsetY;
+
   public void focus(Spaceship spaceship) {
-    offsetX = spaceship.centerX;
-    offsetY = spaceship.centerY;
+    // update only if camera is enabled
+    if (cameraEnabled) {
+      offsetX = spaceship.centerX;
+      offsetY = spaceship.centerY;
+    }
   }
   
   public float getOffsetX() {

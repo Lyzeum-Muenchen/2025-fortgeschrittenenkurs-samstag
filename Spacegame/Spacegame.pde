@@ -9,6 +9,7 @@ final int KEY_TURN_LEFT = 'A';
 final int KEY_TURN_RIGHT = 'D';
 // Inventar
 // Waffencooldown/Anzahl Schuesse
+boolean cameraEnabled = true;
 
 ProgressBar healthBar = new ProgressBar(
   100, 100, 250, 50, color(50), color(227, 46, 46)

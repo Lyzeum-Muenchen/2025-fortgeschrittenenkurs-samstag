@@ -14,6 +14,8 @@ public class Asteroid {
   
   public void draw() {
     pushMatrix();
+    
+    translate(-camera.getOffsetX(), - camera.getOffsetY());
     translate(x, y);
     rectMode(CENTER);
     fill(0, 0, 240);
