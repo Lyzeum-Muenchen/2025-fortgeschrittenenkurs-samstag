@@ -15,17 +15,22 @@ ProgressBar healthBar = new ProgressBar(
   100, 100, 250, 50, color(50), color(227, 46, 46)
 );
 
-Asteroid testAsteroid = new Asteroid(800, 300, ItemType.LYZEUM_ORE, 2);
+List<Asteroid> asteroids;
 
 void setup() {
   //fullScreen();
   size(1600, 900);
   frameRate(120);
   player = new PlayerSpaceship(500, 300, 80, 50);
+  AsteroidGenerator generator = new AsteroidGenerator();
+  asteroids = generator.generate(1500, 500, 1000, 1000);
 }
 
 void keyPressed() {
   pressedKeys.add(keyCode);
+  if (keyCode == ((int)'R')) {
+    cameraEnabled = !cameraEnabled;
+  }
 }
 
 void keyReleased() {
@@ -56,6 +61,8 @@ void draw() {
   // --- DRAW ---
   background(30);
   player.draw();
-  testAsteroid.draw();
+  for (Asteroid asteroid: asteroids) {
+    asteroid.draw();
+  }
   healthBar.draw();
 }

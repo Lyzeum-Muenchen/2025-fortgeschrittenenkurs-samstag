@@ -11,10 +11,23 @@ public class AsteroidGenerator {
     for (int i = 0; i < 100; i++) { 
       float randomX = x + r.nextFloat(-width/2, width/2);
       float randomY = y + r.nextFloat(-height/2, height/2);
+      float angle = r.nextFloat(0, 2 * PI);
       int itemCount = r.nextInt(1, 4);
-      results.add(
-        new Asteroid(randomX, randomY, ItemType.IRON_ORE, itemCount)
+      Asteroid newAsteroid = new Asteroid(
+        randomX, randomY, angle, ItemType.IRON_ORE, itemCount
       );
+      boolean hasColission = false;
+      for (Asteroid existingAsteroid: results) {
+        if (existingAsteroid.intersects(newAsteroid.getShape())) {
+          hasColission = true;
+          break;
+        }
+      }
+      if (!hasColission) {
+        results.add(
+          newAsteroid
+        );
+      }
     }
     return results;
   }
