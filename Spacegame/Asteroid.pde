@@ -5,6 +5,7 @@ public class Asteroid {
   float x, y, width, height, angle;
   ItemType itemType;
   int itemCount;
+  PImage ironOre = loadImage("data/iron_ore.png");
   
   public Asteroid (float x, float y, float angle, ItemType itemType, int itemCount) {
     this.x = x;
@@ -42,7 +43,8 @@ public class Asteroid {
     rotate(angle);
     rectMode(CENTER);
     fill(0, 0, 240);
-    rect(0, 0, width, height);
+    image(ironOre, 0, 0, width, height);
+    // rect(0, 0, width, height);
     popMatrix();
   }
 
