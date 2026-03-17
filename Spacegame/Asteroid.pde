@@ -1,7 +1,7 @@
 import java.awt.Shape;
 import java.awt.geom.*;
 
-public class Asteroid {
+public class Asteroid implements CollidableEntity {
   float x, y, width, height, angle;
   ItemType itemType;
   int itemCount;
@@ -43,8 +43,8 @@ public class Asteroid {
     rotate(angle);
     rectMode(CENTER);
     fill(0, 0, 240);
+    imageMode(CENTER);
     image(ironOre, 0, 0, width, height);
-    // rect(0, 0, width, height);
     popMatrix();
   }
 

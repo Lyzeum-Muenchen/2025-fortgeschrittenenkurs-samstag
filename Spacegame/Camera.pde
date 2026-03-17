@@ -4,8 +4,8 @@ public class Camera {
   public void focus(Spaceship spaceship) {
     // update only if camera is enabled
     if (cameraEnabled) {
-      offsetX = spaceship.centerX;
-      offsetY = spaceship.centerY;
+      offsetX = spaceship.rect.centerX;
+      offsetY = spaceship.rect.centerY;
     }
   }
   

@@ -20,11 +20,15 @@ public class ProgressBar {
     this.maxValue = maxValue;
   }
   public void draw() {
-    float percentage = (float) currentValue / maxValue;
+    float percentage = Math.max(0, Math.min(1, (float) currentValue / maxValue));
     rectMode(CORNER);
     fill(backgroundColor);
     rect(x, y, width, height);
     fill(fillColor);
     rect(x, y, width * percentage, height);
+    textSize(20);
+    fill(255);
+    textAlign(CENTER, CENTER);
+    text(currentValue + " / " + maxValue, x + width / 2, y + height / 2);
   }
 }
