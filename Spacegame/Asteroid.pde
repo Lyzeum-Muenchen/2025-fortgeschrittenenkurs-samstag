@@ -1,7 +1,7 @@
 import java.awt.Shape;
 import java.awt.geom.*;
 
-public class Asteroid {
+public class Asteroid implements CollidableEntity {
   float x, y, width, height, angle;
   ItemType itemType;
   int itemCount;
@@ -28,12 +28,6 @@ public class Asteroid {
     return tx.createTransformedShape(rect);
   }
   
-  public boolean intersects(Shape otherShape) {
-    Area areaA = new Area(getShape());
-    Area areaB = new Area(otherShape);
-    areaA.intersect(areaB);
-    return !areaA.isEmpty();
-  }
   
   public void draw() {
     pushMatrix();
@@ -43,8 +37,8 @@ public class Asteroid {
     rotate(angle);
     rectMode(CENTER);
     fill(0, 0, 240);
+    imageMode(CENTER);
     image(ironOre, 0, 0, width, height);
-    // rect(0, 0, width, height);
     popMatrix();
   }
 

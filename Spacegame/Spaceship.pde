@@ -1,12 +1,11 @@
+import java.awt.Shape;
 
-// Spaceship
-public class Spaceship {
+public class Spaceship implements CollidableEntity {
   float centerX, centerY, shipWidth, shipHeight;
   float angle, turnSpeed, accelerationSpeed;
   float currentSpeed;
   int currentHp, maxHp;
   Inventory inventory;
-  
   
   public Spaceship(float centerX, float centerY, float shipWidth
     , float shipHeight) {
@@ -21,6 +20,17 @@ public class Spaceship {
     maxHp = 100;
     inventory = new Inventory();
     inventory.addItem(ItemType.MORX_ORE, 100);
+  }
+
+  public Shape getShape() {
+    Rectangle2D rect = new Rectangle2D.Double(
+      -shipWidth/2, -shipHeight /2,
+      shipWidth, shipHeight);
+    // verschiebe und rotiere Rechteck
+    AffineTransform tx = new AffineTransform();
+    tx.translate(centerX, centerY);
+    tx.rotate(angle);
+    return tx.createTransformedShape(rect);
   }
   
   public void turnLeft() {
@@ -49,6 +59,16 @@ public class Spaceship {
     float diffY = sin(angle) * currentSpeed;
     centerX += diffX;
     centerY += diffY;
+
+    // spaceship - asteroid collision
+    for (Asteroid asteroid: asteroids) {
+      if (this.intersects(asteroid.getShape())) {
+        this.currentHp = max(0, currentHp - 5);
+        asteroids.remove(asteroid);
+        break;
+      }
+    }
+    
   }
   
   public void draw() {
