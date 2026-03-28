@@ -7,6 +7,8 @@ final int KEY_ACCELERATE = 'W';
 final int KEY_BRAKE = 'S';
 final int KEY_TURN_LEFT = 'A';
 final int KEY_TURN_RIGHT = 'D';
+final int KEY_PRIMARY_ATTACK = ' ';
+final float LASER_SPEED = 15;
 // Inventar
 // Waffencooldown/Anzahl Schuesse
 boolean cameraEnabled = true;
@@ -49,6 +51,9 @@ void handleKeypresses() {
   }
   if (pressedKeys.contains(KEY_TURN_RIGHT)) {
     player.turnRight();
+  }
+  if (pressedKeys.contains(KEY_PRIMARY_ATTACK)) {
+    player.usePrimaryAttack();
   }
 }
 

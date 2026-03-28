@@ -1,11 +1,13 @@
 import java.awt.Shape;
 
-public class Spaceship implements CollidableEntity {
+public class Spaceship implements Collidable {
   float centerX, centerY, shipWidth, shipHeight;
   float angle, turnSpeed, accelerationSpeed;
   float currentSpeed;
   int currentHp, maxHp;
   Inventory inventory;
+  List<LaserAttack> attacks = new ArrayList<LaserAttack>();
+  int primaryAttackCooldown;
   
   public Spaceship(float centerX, float centerY, float shipWidth
     , float shipHeight) {
@@ -16,7 +18,7 @@ public class Spaceship implements CollidableEntity {
     angle = 0.0f;
     turnSpeed = PI / 128;
     accelerationSpeed = 0.02f;
-    currentHp = 50;
+    currentHp = 100;
     maxHp = 100;
     inventory = new Inventory();
     inventory.addItem(ItemType.MORX_ORE, 100);
@@ -70,6 +72,13 @@ public class Spaceship implements CollidableEntity {
     }
     
   }
+
+  public void usePrimaryAttack() {
+    // TODO Cooldowns beachten
+    LaserAttack newAttack = new LaserAttack(centerX, centerY,
+    angle, LASER_SPEED);
+    attacks.add(newAttack);
+  }
   
   public void draw() {
     pushMatrix();
@@ -81,6 +90,10 @@ public class Spaceship implements CollidableEntity {
     fill(240);
     rect(0, 0, shipWidth, shipHeight);
     popMatrix();
+    for (LaserAttack attack: attacks) {
+      attack.move();
+      attack.draw();
+    }
   }
   
 }

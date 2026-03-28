@@ -1,7 +1,7 @@
 import java.awt.Shape;
 import java.awt.geom.*;
 
-public class Asteroid implements CollidableEntity {
+public class Asteroid implements Collidable {
   float x, y, width, height, angle;
   ItemType itemType;
   int itemCount;

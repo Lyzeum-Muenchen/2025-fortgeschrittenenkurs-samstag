@@ -1,7 +1,7 @@
 import java.awt.Shape;
 import java.awt.geom.Area;
 
-public interface CollidableEntity {
+public interface Collidable {
     Shape getShape();
     
     default boolean intersects(Shape otherShape) {
