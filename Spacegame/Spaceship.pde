@@ -61,6 +61,9 @@ public class Spaceship implements Collidable {
     float diffY = sin(angle) * currentSpeed;
     centerX += diffX;
     centerY += diffY;
+    if (primaryAttackCooldown > 0) {
+      primaryAttackCooldown--;
+    }
 
     // spaceship - asteroid collision
     for (Asteroid asteroid: asteroids) {
@@ -70,14 +73,31 @@ public class Spaceship implements Collidable {
         break;
       }
     }
-    
+    // attack - asteroid collision
+    for (LaserAttack attack: attacks) {
+      for (Asteroid asteroid: asteroids) {
+        if (attack.intersects(asteroid.getShape())) {
+          inventory.addItem(
+            asteroid.itemType, 
+            asteroid.itemCount
+          );
+          attacks.remove(attack);
+          asteroids.remove(asteroid);
+          return;
+        }
+      }
+    }
   }
 
   public void usePrimaryAttack() {
-    // TODO Cooldowns beachten
+    if (primaryAttackCooldown > 0) {
+      return;
+    }
+    primaryAttackCooldown = PRIMARY_ATTACK_COOLDOWN;
     LaserAttack newAttack = new LaserAttack(centerX, centerY,
     angle, LASER_SPEED);
     attacks.add(newAttack);
+    
   }
   
   public void draw() {

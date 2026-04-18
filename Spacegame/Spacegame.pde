@@ -9,12 +9,16 @@ final int KEY_TURN_LEFT = 'A';
 final int KEY_TURN_RIGHT = 'D';
 final int KEY_PRIMARY_ATTACK = ' ';
 final float LASER_SPEED = 15;
+final int PRIMARY_ATTACK_COOLDOWN = 120;
 // Inventar
 // Waffencooldown/Anzahl Schuesse
 boolean cameraEnabled = true;
 
 ProgressBar healthBar = new ProgressBar(
   100, 100, 250, 50, color(50), color(227, 46, 46)
+);
+ProgressBar cooldownBar = new ProgressBar(
+  100, 170, 250, 50, color(50), color(46, 227, 46)
 );
 
 List<Asteroid> asteroids;
@@ -70,4 +74,8 @@ void draw() {
     asteroid.draw();
   }
   healthBar.draw();
+  if (player.primaryAttackCooldown > 0) {
+    cooldownBar.setValues(player.primaryAttackCooldown, PRIMARY_ATTACK_COOLDOWN);
+    cooldownBar.draw();
+  }
 }
