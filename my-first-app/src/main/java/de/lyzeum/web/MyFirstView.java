@@ -59,6 +59,7 @@ public class MyFirstView extends VerticalLayout {
 			outputParagraph.removeClassName("success-text");
 			outputParagraph.addClassName("error-text");
 		}
+		txtInput.clear();
 	}
 
 
