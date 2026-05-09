@@ -50,10 +50,14 @@ public class MyFirstView extends VerticalLayout {
 			outputParagraph.setText(
 					txtInput.getValue() + " is a Palindrome!"
 			);
+			outputParagraph.removeClassName("error-text");
+			outputParagraph.addClassName("success-text");
 		} else {
 			outputParagraph.setText(
 					txtInput.getValue() + " is not a Palindrome!"
 			);
+			outputParagraph.removeClassName("success-text");
+			outputParagraph.addClassName("error-text");
 		}
 	}
 

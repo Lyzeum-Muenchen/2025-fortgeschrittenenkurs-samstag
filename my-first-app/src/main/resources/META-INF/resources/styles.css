@@ -1,1 +1,7 @@
-/* Add your styles here */
+
+.success-text {
+    color: rgb(40, 200, 4);
+}
+.error-text {
+    color: rgb(200, 40, 4);
+}
