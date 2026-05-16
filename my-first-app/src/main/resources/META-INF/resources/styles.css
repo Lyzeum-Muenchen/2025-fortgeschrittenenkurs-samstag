@@ -5,3 +5,7 @@
 .error-text {
     color: rgb(200, 40, 4);
 }
+.color-container {
+    width: 200px;
+    height: 200px;
+}
