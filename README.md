@@ -31,3 +31,12 @@
 ## Aufgabenblätter
 
 - [Color Selector (16.05.2026)](https://drive.google.com/file/d/1MkzjTxeOLT3u5xGWvi2lNOoet2VSFuLH/view?usp=sharing)
+
+
+## Flaggenquiz-Projekt
+
+### Anforderungen
+
+- Beinhaltet Flaggen zu den 48 2026 Fußball-WM Länder
+- Beantwortung von Fragen durch Eintippen der Namen auf Deutsch
+- Auswahl der Spiellänge im Hauptmenü mit 5, 10 oder 15 Fragen
