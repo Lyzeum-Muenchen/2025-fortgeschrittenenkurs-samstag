@@ -40,3 +40,11 @@
 - Beinhaltet Flaggen zu den 48 2026 Fußball-WM Länder
 - Beantwortung von Fragen durch Eintippen der Namen auf Deutsch
 - Auswahl der Spiellänge im Hauptmenü mit 5, 10 oder 15 Fragen
+
+### Projektvorlage
+
+[FlagQuiz.zip](./FlagQuiz.zip)
+- 48 Flaggen im JPG-Format
+- Datei mit Referenz zu Dateinamen
+- Datei mit Ländernamen und Aliaswerten
+- erste Processing-Projektkonfiguration
