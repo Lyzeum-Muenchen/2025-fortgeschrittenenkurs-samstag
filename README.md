@@ -43,7 +43,7 @@
 
 ### Projektvorlage
 
-[FlagQuiz.zip](./FlagQuiz.zip)
+[FlagQuiz.zip](https://drive.google.com/file/d/1vgzktQ56ExM2GCzZfUTsbgdoWB339f-M/view?usp=sharing)
 - 48 Flaggen im JPG-Format
 - Datei mit Referenz zu Dateinamen
 - Datei mit Ländernamen und Aliaswerten
