@@ -16,6 +16,11 @@ public class CountryInfo {
       height = 600;
       width = 600 * ((float)flag.width) / ((float)flag.height);
     }
+    if (height > 400) {
+      float ratio = 400 / height;
+      width = ratio * width;
+      height = ratio * height;
+    }
   }
   
   public String getDefaultName() {

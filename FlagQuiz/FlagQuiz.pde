@@ -1,3 +1,5 @@
+import java.util.Collections;
+import java.util.Random;
 
 String input = "";
 ArrayList<CountryInfo> countries = new ArrayList<CountryInfo>();
@@ -5,7 +7,6 @@ int index = 0;
 
 void setup () {
   size(1500, 1000);
-  // TODO Flaggen-Dateinamen lesen
   String[] filenames = loadStrings("list_images.csv");
   String[] countrynames = loadStrings("countries.csv");
   // TODO Ländernamen lesen
@@ -13,6 +14,8 @@ void setup () {
     CountryInfo info = new CountryInfo(filenames[i], countrynames[i].split(","));
     countries.add(info);
   }
+  
+  Collections.shuffle(countries, new Random());
 }
 
 void keyTyped() {
@@ -45,8 +48,6 @@ void draw() {
   fill(0);
   textSize(40);
   textAlign(CENTER);
-  text(input, width/2, 750);
-  
-  text(info.getDefaultName(), width/2, 800);
+  text(input.toUpperCase(), width/2, 750);
   
 }
