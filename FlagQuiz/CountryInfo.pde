@@ -23,7 +23,13 @@ public class CountryInfo {
   }
   
   public boolean matchesName(String textInput) {
-    return false; // TODO
+    String normalizedInput = textInput.toLowerCase();
+    for (String name: names) {
+      if (name.toLowerCase().equals(normalizedInput)) {
+        return true;
+      }
+    }
+    return false;
   }
   
 
