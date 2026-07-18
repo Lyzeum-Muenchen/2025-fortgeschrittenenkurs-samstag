@@ -48,10 +48,6 @@ float getObstacleSpeed() {
   return -1 * xval(0.01);
 }
 
-boolean landsOnPlatform(Platform platform, Player player, Rectangle nextPos) {
-  return false; // TODO
-}
-
 void keyPressed() {
   player.keyPressed();
 }
