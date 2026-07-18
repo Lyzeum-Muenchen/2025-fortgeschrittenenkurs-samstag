@@ -233,4 +233,62 @@ public class Platform {
     - Beim Drücken eines Sprungs soll `ySpeed` auf einen Wert gesetzt werden, welcher den Spieler nach oben fliegen lässt.
     - Hinweis: Die Kolission mit der Platform soll später implementiert werden.
     - Hinweis: Eine maximale Anzahl erlaubter Sprünge soll noch nicht implementiert werden.
-3. Rufe updateSpeed() in der Klasse JumpnRun an geeigneter Stelle auf.
+3. Rufe `updateSpeed()` in der Klasse JumpnRun an geeigneter Stelle auf.
+
+
+## Platform-Player-Kolission
+
+1. Falls der Spieler mit der Platform kollidiert, sollen folgende Aktionen durchgeführt werden
+  - Der Spieler wird auf die Platform gestellt
+  - `ySpeed` soll auf 0 gestellt werden
+  - Es soll die erlaubte Sprunganzahl zurückgesetzt werden.
+
+## Generierung von Obstacles
+
+Obstacles werden außerhalb des Fensters generiert und bewegen sich vom rechten Rand auf den Spieler zu. Nach dem Verschwinden am linken Rand sollen die Objekte auch zerstört werden. Die Generierung soll in einer ersten Version alle 800 bis 2000 Millisekunden auftreten. 
+
+1. Füge in regelmäßigen Abständen immer neue Obstacles der Liste hinzu
+2. Bei jedem Aufruf der draw()-Methode soll die Position des Obstacle aktualisiert werden und an der neuen Position gezeichnet werden.
+3. Nach dem Verschwinden des Obstacle vom Bildschirm, soll das Element aus der Liste gelöscht werden.
+
+## GameOver-Event
+
+1. Füge eine neue Variable hinzu, welche eine Unterscheidung zwischen aktiven Spiel und dem GameOver-Zustand.
+2. Der GameOver-Zustand wird ausgelöst, falls ein Obstacle und der Spieler kollidieren.
+3. Es sollen im GameOver-Zustand keine neuen Obstacles generiert werden.
+4. Der GameOver-Zustand soll mit einer anderen Taste (z.B. Enter) als der Sprungtaste wieder in ein aktives Spiel wechseln können. Der Spielstart soll durch den Aufruf von `resetGame()` durchgeführt werden.
+
+
+## Punktezähler
+
+1. Der Punktezähler soll nur in einem aktiven Spiel nach oben gezählt werden.
+2. Der Punktezähler soll entweder mit der Zeit oder nach je einem überwundenen Obstacle hochgezählt werden.
+3. Der Punktezähler sollte auf der oberen Seite des Bildschirms eingeblendet werden.
+
+
+## Erweiterungen
+
+### Schwierigkeitsgrad
+
+1. Nach jedem überwundenen Obstacle soll die Schwierigkeit leicht erhöht werden. 
+2. Ein erhöhter Schwierigkeitsgrad soll die Geschwindigkeit der Obstacles erhöhen.
+3. Die Verzögerung bis zur nächsten Obstacle-Generierung kann ggf. auch etwas verringert werden.
+4. Es darf nicht passieren, dass das Spiel aufgrund zu kleiner Abstände für den Spieler nicht lösbar sind. Gegebenenfalls kann auch die Gravitations- und Sprungkraft des Spielers angepasst werden.
+
+### Highscore
+
+1. Zum Spielstart soll der aktuellste Highscore aus einer Highscore-Datei im `data`-Ordner geladen werden. Falls kein Wert existiert, soll die Punktzahl 0 gewählt werden.
+2. Beim Auftreten eines GameOver-Events soll die aktuelle Punktzahl mit dem Highscores verglichen werden. Bei einer neuen Bestpunktzahl soll der Wert in die Highscore-Datei geschrieben werden.
+3. Der Highscore soll immer eingeblendet werden, z.B. unterhalb oder neben der aktuellen Punktzahl.
+
+### Texturen
+
+1. Der Spieler sollte eine Textur besitzen. Optional wären zwei Texturen für die Bewegung am Boden und eine während des Sprungs.
+2. Obstacles sollten passende Texturen haben, z.B. Laserstrahlen, Kisten, Stacheln, etc.
+
+### Obstacle-Variationen
+
+1. Die Positionierung des Obstacles kann variiert werden, z.B. auf dem Boden oder in der Luft.
+2. Die Größe kann angepasst werden.
+  - Kleine und große Obstacles
+  - quadratische und quaderförmige Obstacles
