@@ -6,7 +6,7 @@ public class Obstacle {
   }
   
   public void update() {
-    // TODO
+    this.pos = pos.move(getObstacleSpeed(), 0);
   }
   
   public boolean isRemovable() {
@@ -14,7 +14,12 @@ public class Obstacle {
   }
   
   public void draw() {
-    // TODO
+    if (pos.intersects(player.pos)) {
+      fill(255, 0, 0);
+    } else {
+      fill(50, 255, 50);
+    }
+    rect(pos.x, pos.y, pos.w, pos.h);
   }
   
   public boolean intersects(Player player) {
